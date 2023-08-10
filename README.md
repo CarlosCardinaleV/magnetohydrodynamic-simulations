@@ -213,6 +213,38 @@ En el codigo proporcionado, lo que muestra como output es una grafica como la qu
 ## Que se hace y porqué 
 En este repositorio se traslada el codigo de Matlab anterior a código en C. La razón de pasarlo a C es para mejorar la optimización del código y que dé resultados más rápidos que en Matlab. Además, se usa codigo paralelo en C para que sea aun mejor la optimización y rapidez de la ejecución de la simulación. Al compilarlo se tendrá como salida un archivo .txt con las coordenadas del eje X y eje Y que pueden ser usadas para graficarlas con GNUplot. Tiene entonces dos versiones en C, uno serial y otro paralelo.
 
+## Dependencias de bibliotecas
+Las biblitecas que hay que tener instaladas en el sistema son:
+1. OpenMP - Es necesario para la programación paralela.
+2. GNUplot - Es una herramienta para generar gráficos y visualizar datos.
+
+## Compilar
+### Código serial
+Compila el programa utilizando un compilador de C, como GCC (GNU Compiler Collection). El comando para compilar podría ser similar al siguiente:
+
+```bash
+gcc -o mhd *.c -lm
+```
+NOTA: revisa estar dentro de la carpeta con el código serial (MHD-serial) para que compile todos los archivos de C.
+
+Ejecuta el programa ejecutable desde la terminal con el siguiente comando:
+```bash
+./mhd
+```
+
+### Código paralelo
+Para el código paralelo se hace algo similar, solo que se incluye la biblioteca de OpenMP. Se compila usando el siguiente comando:
+```bash
+gcc -o mhd_openmp *.c -fopenmp
+```
+NOTA: revisa estar dentro de la carpeta con el código serial (MHD-paralelo) para que compile todos los archivos de C.
+
+Ejecuta el programa ejecutable desde la terminal con el siguiente comando:
+```bash
+./mhd_openmp
+```
+
+
 ## Graficar
 Para graficar los resultados del archivo .txt se utiliza las siguientes instrucciones
 ```bash
@@ -221,11 +253,6 @@ set datafile separator " "
 plot 'datos.txt' using 1:2 with lines
 ``` 
 Importante mencionar que la grafica que proporciona depende de la cantidad de nodos que se especifiquen en el código C.
-
-## Dependencias de bibliotecas
-Las biblitecas que hay que tener instaladas en el sistema son:
-1. OpenMP - Es necesario para la programación paralela.
-2. GNUplot - Es una herramienta para generar gráficos y visualizar datos.
 
 ## Limitaciones
 En esta seccion se da una lista de las limitaciones:
