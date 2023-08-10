@@ -235,7 +235,7 @@ Ejecuta el programa ejecutable desde la terminal con el siguiente comando:
 ### Código paralelo
 Para el código paralelo se hace algo similar, solo que se incluye la biblioteca de OpenMP. Se compila usando el siguiente comando:
 ```bash
-gcc -o mhd_openmp *.c -fopenmp
+gcc -o mhd_openmp *.c -fopenmp -lm
 ```
 NOTA: revisa estar dentro de la carpeta con el código serial (MHD-paralelo) para que compile todos los archivos de C.
 
