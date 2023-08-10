@@ -209,3 +209,20 @@ end
 
 En el codigo proporcionado, lo que muestra como output es una grafica como la que se ve a continuacion:
 ![Texto alternativo](imagenes/grafico_matlab.png)
+
+# Que se hace y porqué 
+En este repositorio se traslada el codigo de Matlab anterior a código en C. La razón de pasarlo a C es para mejorar la optimización del código y que dé resultados más rápidos que en Matlab. Además, se usa codigo paralelo en C para que sea aun mejor la optimización y rapidez de la ejecución de la simulación. Al compilarlo se tendrá como salida un archivo .txt con las coordenadas del eje X y eje Y que pueden ser usadas para graficarlas con GNUplot. Tiene entonces dos versiones en C, uno serial y otro paralelo.
+
+# Graficar
+Para graficar los resultados del archivo .txt se utilizaban las siguientes instrucciones
+```bash
+$ gnuplot
+set datafile separator " "
+plot 'datos.txt' using 1:2 with lines
+``` 
+Importante mencionar que la grafica que proporcionaba, a veces, no era tan parecida a la grafica que proporcionaba el codigo de matlab. Esto depende de la cantidad de nodos que se especifiquen en el código C.
+
+# Dependencias de bibliotecas
+Las biblitecas que hay que tener instaladas en el sistema son:
+1. OpenMP - Es necesario para la programación paralela.
+2. GNUplot - Es una herramienta para generar gráficos y visualizar datos.
