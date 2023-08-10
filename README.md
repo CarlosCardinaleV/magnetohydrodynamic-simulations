@@ -1,6 +1,6 @@
 # Magnetohydrodynamic (MHD) Simulations
 
-# Contexto del codigo
+## Contexto del codigo
 El codigo es una simulación del paper llamado "Implicit predictor–corrector central finite difference scheme for the equations of magnetohydrodynamic simulations" hecho por los siguientes investigadores:
 1. T.C. Tsai
 2. H.-S. Yu
@@ -10,7 +10,7 @@ El codigo es una simulación del paper llamado "Implicit predictor–corrector c
 
 En el abstract del paper explican que el artículo propone un esquema de diferencia finita central implícita de alto orden predictor-corrector (iPCCFD) y demuestra su alta eficiencia en el cómputo paralelo. De especial interés son los estudios numéricos a gran escala, como las simulaciones magnetohidrodinámicas (MHD) en la magnetosfera planetaria. Se desarrolla un esquema iPCCFD basado en el método de diferencia finita central de quinto orden y el método implícito predictor-corrector de cuarto orden en combinación con la técnica de eliminación de errores de redondeo (ERE). Se examinan varios estudios numéricos, como el problema unidimensional del tubo de choque Brio-Wu, el sistema de vórtices Orszag-Tang bidimensional, la inestabilidad de tipo K-H de vórtices, la inestabilidad de tipo K-H de tipo kink, la advección de lazo de campo y la onda de choque. Todos los resultados de las simulaciones son consistentes con numerosas literaturas. iPCCFD puede minimizar las inestabilidades y ruidos numéricos junto con los términos adicionales de difusión. Todos nuestros estudios presentan errores numéricos relativamente pequeños sin emplear ninguna reconstrucción libre de divergencia. En particular, obtenemos resultados bastante estables en el problema bidimensional del tubo de choque Brio-Wu que conserva bien ∇ · B = 0 en toda la simulación. La técnica ERE elimina la acumulación de errores de redondeo en el sistema uniforme o no perturbado. También hemos demostrado que iPCCFD se caracteriza por su alto orden de precisión y baja disipación numérica en las pruebas de onda de Alfvén polarizada circularmente. El esquema propuesto iPCCFD es un esquema numérico paralelo-eficiente y de alta precisión para resolver las ecuaciones MHD en sistemas de conservación hiperbólica.
 
-# Codigo original
+## Codigo original
 Se proporciono un codigo en Matlab con el fin de pasarlo a C y paralelizarlo con MPI o con openMP para mejorar el rendimiento. El código en Matlab es el siguiente:
 ```Matlab
 function mhd()
@@ -210,10 +210,10 @@ end
 En el codigo proporcionado, lo que muestra como output es una grafica como la que se ve a continuacion:
 ![Texto alternativo](imagenes/grafico_matlab.png)
 
-# Que se hace y porqué 
+## Que se hace y porqué 
 En este repositorio se traslada el codigo de Matlab anterior a código en C. La razón de pasarlo a C es para mejorar la optimización del código y que dé resultados más rápidos que en Matlab. Además, se usa codigo paralelo en C para que sea aun mejor la optimización y rapidez de la ejecución de la simulación. Al compilarlo se tendrá como salida un archivo .txt con las coordenadas del eje X y eje Y que pueden ser usadas para graficarlas con GNUplot. Tiene entonces dos versiones en C, uno serial y otro paralelo.
 
-# Graficar
+## Graficar
 Para graficar los resultados del archivo .txt se utiliza las siguientes instrucciones
 ```bash
 $ gnuplot
@@ -222,12 +222,12 @@ plot 'datos.txt' using 1:2 with lines
 ``` 
 Importante mencionar que la grafica que proporciona depende de la cantidad de nodos que se especifiquen en el código C.
 
-# Dependencias de bibliotecas
+## Dependencias de bibliotecas
 Las biblitecas que hay que tener instaladas en el sistema son:
 1. OpenMP - Es necesario para la programación paralela.
 2. GNUplot - Es una herramienta para generar gráficos y visualizar datos.
 
-# Limitaciones
+## Limitaciones
 En esta seccion se da una lista de las limitaciones:
 1. no siempre se logra imprimir correctamente en el archivo .txt y esto afecta a la hora de graficar.
 2. la versión paralela no necesariamente es más rápida que la versión serial.
